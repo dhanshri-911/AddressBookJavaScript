@@ -145,15 +145,29 @@ function editContact() {
     }
 }
 
+function deleteContact(){
+    console.log("Enter the First Name :");
+    let firstName = prompt();
+    for(let contact of addressBookArr) {
+        if(contact._firstName == firstName){
+            console.log("Contact with First Name Found.");
+            addressBookArr.splice(contact,1);
+            console.log("Contact Deleted.")
+        } else{
+            console.log("Contact with First Name Not Found.");
+        }
+    }
+}
+
 
 try{
-    let contact1 = new Contact("Dhanshri","Zingae","Navimumbao","Pune","Maharashtra","412307","8657169656","dhanshri@gmail.com");
+    let contact1 = new Contact("Dhanshri","Zingade","naviMumbai","Pune","Maharashtra","412307","8657169656","Dhanshri@gmail.com");
 //    console.log(contact1.toString());
    
-    let contact2 = new Contact("Rajshri","Zingade","Pune","Latur","Maharashtra","414141","9021473464","Rajshri@gmail.com");
+    let contact2 = new Contact("Rajshri","Zingade","Mudged","Latur","Maharashtra","414141","9021473464","Rajshri@gmail.com");
 //    console.log(contact2.toString());
 
-    let contact3 = new Contact("Sapna","Gore","Lohara","Bider","Karnataka","123456","9876543210","Ssapna@gmail.com");
+    let contact3 = new Contact("Sapna","Gore","Lohara","Bidar","Karnataka","123456","9876543210","Ssapna@gmail.com");
 //    console.log(contact3.toString());
 
     var addressBookArr = [];
@@ -165,5 +179,7 @@ try{
 }
 
 console.log(addressBookArr);
-editContact();
+// editContact();
+deleteContact();
+
 console.log(addressBookArr);
