@@ -191,6 +191,19 @@ function searchPersonthroughCityorstate() {
 }
 
 
+function countByCityState() {
+    let cityArr = new Array();
+    let stateArr = new Array();
+    [...addressBookArr].forEach(contact => cityArr[contact._city] ? cityArr[contact._city] += 1 : cityArr[contact._city] = 1);
+    [...addressBookArr].forEach(contact => stateArr[contact._state] ? stateArr[contact._state] += 1 : stateArr[contact._state] = 1);
+
+    console.log("City Counts :"+cityArr);
+    console.log("State Counts :"+stateArr);
+}
+
+
+
+
 function addressBook() {
     do{
         console.log("1. Add New Contacts");
@@ -199,8 +212,10 @@ function addressBook() {
         console.log("4. Display Contacts");
         console.log("5. Display Contacts Count")
         console.log("6. Search Person through City or State");
-        console.log("7. Quit");
+        console.log("7. Count by city or state");
+        console.log("8. QUIT!!!");
         var choice = Number(prompt());
+
         switch(choice) {
             case 1:
                 addNewContact();
@@ -221,7 +236,10 @@ function addressBook() {
                 searchPersonthroughCityorstate();
                 break;   
             case 7:
-            console.log("Thank You");   
+                countByCityState();
+                break;   
+            case 8:
+                console.log("Thank You");   
                 break;
         }
     }while(choice!=7);
