@@ -1,3 +1,7 @@
+"use strict";
+var ps = require("prompt-sync")
+var prompt = ps();
+
 class Contact{
     constructor(...params){
         this.firstName = params[0];
@@ -6,7 +10,7 @@ class Contact{
         this.city = params[3];
         this.state = params[4];
         this.zip = params[5];
-        this.phoneno = params[6];
+        this.phoneNo = params[6];
         this.email = params[7];
     }
 
@@ -81,12 +85,12 @@ class Contact{
     set phoneNo(phoneNo) {
         let Pattern = RegExp('^[0-9]{2}|\s|[0-9]{10}$');
         if(Pattern.test(phoneNo)) {
-            this._phoneno = phoneNo;
+            this._phoneNo = phoneNo;
         } else throw 'Invalid Phone Number.';
     }
 
     get phoneNo() {
-        return this._phoneno;
+        return this._phoneNo;
     }
 
     set email(email){
@@ -107,14 +111,59 @@ class Contact{
             + " City= "+ this.city
             + " State= "+ this.state
             + " Zip= "+ this.zip
-            + " Phone No= "+ this.phoneNo
+            + " PhoneNo= "+ this.phoneNo
             + " Email = "+ this.email;
     }
 }
 
+
+function contactDetails(contact) {
+    console.log("Enter the Last Name :");
+    contact._lastName = prompt();
+    console.log("Enter the Address :");
+    contact._address = prompt();
+    console.log("Enter the City :");
+    contact._city = prompt();
+    console.log("Enter the State :");
+    contact._state = prompt();
+    console.log("Enter the Zip :");
+    contact._zip = prompt();
+    console.log("Enter the Phone No :");
+    contact._phoneno = prompt();
+    console.log("Enter the Email ID :");
+    contact._email = prompt();
+}
+
+function editContact() {
+    console.log("Enter the First Name :");
+    let firstName = prompt();
+    for(let contact of addressBookArr) {
+        if(contact._firstName == firstName){
+            console.log("Contact with First Name Found.");
+            contactDetails(contact);
+        } 
+    }
+}
+
+
 try{
-    let contact1 = new Contact("Dhanshri","Zingade","naviMumbai","Pune","Maharashtra","412307","8657169656","amol9.ag@gmail.com");
-    console.log(contact1.toString());
+    let contact1 = new Contact("Dhanshri","Zingae","Navimumbao","Pune","Maharashtra","412307","8657169656","dhanshri@gmail.com");
+//    console.log(contact1.toString());
+   
+    let contact2 = new Contact("Rajshri","Zingade","Pune","Latur","Maharashtra","414141","9021473464","Rajshri@gmail.com");
+//    console.log(contact2.toString());
+
+    let contact3 = new Contact("Sapna","Gore","Lohara","Bider","Karnataka","123456","9876543210","Ssapna@gmail.com");
+//    console.log(contact3.toString());
+
+    var addressBookArr = [];
+    addressBookArr.push(contact1);
+    addressBookArr.push(contact2);
+    addressBookArr.push(contact3);
 } catch(e) {
     console.log(e);
 }
+
+console.log(addressBookArr);
+editContact();
+console.log(addressBookArr);
