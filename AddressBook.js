@@ -216,7 +216,42 @@ function sortAlphabeticallyByName() {
 }
 
 
-
+function sortByCityStateZip(choicenumber) {
+    if(choicenumber == 1) {
+        addressBookArr.sort(function (a, b) {
+            if (a._city > b._city) {
+                return 1;
+            }
+            if (b._city > a._city) {
+                return -1;
+            }
+            return 0;
+        });
+    }
+    if(choicenumber == 2) {
+        addressBookArr.sort(function (a, b) {
+            if (a._state > b._state) {
+                return 1;
+            }
+            if (b._state > a._state) {
+                return -1;
+            }
+            return 0;
+        });
+    }
+    if(choicenumber == 3) {
+        addressBookArr.sort(function (a, b) {
+            if (a._zip > b._zip) {
+                return 1;
+            }
+            if (b._zip > a._zip) {
+                return -1;
+            }
+            return 0;
+        });
+    }
+    console.log([...addressBookArr]);
+}
 
 
 function addressBook() {
@@ -229,7 +264,8 @@ function addressBook() {
         console.log("6. Search Person through City or State");
         console.log("7. Count by city or state");
         console.log("8. Sort by name ");
-        console.log("9. QUIT!!!");
+        console.log("9. Sort by city,state,zip ");
+        console.log("10. QUIT!!!");
         var choice = Number(prompt());
 
         switch(choice) {
@@ -258,10 +294,13 @@ function addressBook() {
                 sortAlphabeticallyByName()
                 break;
             case 9:
+                sortByCityStateZip(choicenumber)
+                break;
+            case 10:
                 console.log("Thank You");   
                 break;
         }
-    }while(choice<=9);
+    }while(choice<=10);
 }
 
 try{
