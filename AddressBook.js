@@ -202,6 +202,21 @@ function countByCityState() {
 }
 
 
+function sortAlphabeticallyByName() {
+    addressBookArr.sort(function (a, b) {
+        if (a._firstName > b._firstName) {
+            return 1;
+        }
+        if (b._firstName > a._firstName) {
+            return -1;
+        }
+        return 0;
+    });
+    console.log([...addressBookArr]);
+}
+
+
+
 
 
 function addressBook() {
@@ -213,7 +228,8 @@ function addressBook() {
         console.log("5. Display Contacts Count")
         console.log("6. Search Person through City or State");
         console.log("7. Count by city or state");
-        console.log("8. QUIT!!!");
+        console.log("8. Sort by name ");
+        console.log("9. QUIT!!!");
         var choice = Number(prompt());
 
         switch(choice) {
@@ -239,10 +255,13 @@ function addressBook() {
                 countByCityState();
                 break;   
             case 8:
+                sortAlphabeticallyByName()
+                break;
+            case 9:
                 console.log("Thank You");   
                 break;
         }
-    }while(choice!=7);
+    }while(choice<=9);
 }
 
 try{
