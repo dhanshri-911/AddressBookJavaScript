@@ -117,21 +117,32 @@ class Contact{
 }
 
 
-function contactDetails(contact) {
+var addressBookArr = new Array();
+
+function addNewContact() {
+    console.log("Enter the First Name :");
+    let firstName = prompt();
+    if([...addressBookArr].filter(contact=>contact._firstName==firstName).reduce((present,firstName)=>present+=1,0))
+    {
+        console.log("Name is Already Available")
+    } else {
     console.log("Enter the Last Name :");
-    contact._lastName = prompt();
+    let lastName = prompt();
     console.log("Enter the Address :");
-    contact._address = prompt();
+    let address = prompt();
     console.log("Enter the City :");
-    contact._city = prompt();
+    let city = prompt();
     console.log("Enter the State :");
-    contact._state = prompt();
+    let state = prompt();
     console.log("Enter the Zip :");
-    contact._zip = prompt();
+    let zip = prompt();
     console.log("Enter the Phone No :");
-    contact._phoneno = prompt();
+    let phoneno = prompt();
     console.log("Enter the Email ID :");
-    contact._email = prompt();
+    let email = prompt();
+    let contact = new Contact(firstName,lastName,address,city,state,zip,phoneno,email);
+    addressBookArr.push(contact);
+    }
 }
 
 function editContact() {
@@ -160,26 +171,46 @@ function deleteContact(){
 }
 
 
+function countContacts(){
+    return [...addressBookArr].map(contact => contact._firstName).reduce((start,firstName)=>start+=1,0);
+}
+
+
+function addressBook() {
+    do{
+        console.log("1. Add New Contacts");
+        console.log("2. Edit Contacts");
+        console.log("3. Delete Contacts");
+        console.log("4. Display Contacts");
+        console.log("5. Display Contacts Count")
+        console.log("6. Quit");
+        var choice = Number(prompt());
+        switch(choice) {
+            case 1:
+                addNewContact();
+                break;
+            case 2:
+                editContact();
+                break;
+            case 3:
+                deleteContact();
+                break;
+            case 4:
+                console.log(addressBookArr);
+                break;
+            case 5:
+                console.log("Total Contacts are :"+countContacts());
+                break;
+            case 6:
+            console.log("Thank You");   
+                break;
+        }
+    }while(choice!=5);
+}
+
+
 try{
-    let contact1 = new Contact("Dhanshri","Zingade","naviMumbai","Pune","Maharashtra","412307","8657169656","Dhanshri@gmail.com");
-//    console.log(contact1.toString());
-   
-    let contact2 = new Contact("Rajshri","Zingade","Mudged","Latur","Maharashtra","414141","9021473464","Rajshri@gmail.com");
-//    console.log(contact2.toString());
-
-    let contact3 = new Contact("Sapna","Gore","Lohara","Bidar","Karnataka","123456","9876543210","Ssapna@gmail.com");
-//    console.log(contact3.toString());
-
-    var addressBookArr = [];
-    addressBookArr.push(contact1);
-    addressBookArr.push(contact2);
-    addressBookArr.push(contact3);
+    addressBook();
 } catch(e) {
     console.log(e);
 }
-
-console.log(addressBookArr);
-// editContact();
-deleteContact();
-
-console.log(addressBookArr);
